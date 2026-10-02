@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remesas a Cuba 🇨🇺 | Envíos Rápidos y Seguros</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #004bb5;
+            --whatsapp: #25D366;
+            --whatsapp-dark: #1da851;
+            --bg: #f4f7fe;
+            --card-bg: #ffffff;
+            --text: #2b2d42;
+            --text-muted: #6c757d;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0052cc 0%, #002966 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: -20px auto 0;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Monedas Banner */
+        .currency-banner {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            background: #eef5ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #d0e2ff;
+        }
+
+        .currency-item h4 {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+
+        /* Estilos de Pagos Disponibles */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .method-badge {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Formulario */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .form-group {
+            flex: 1;
+        }
+
+        /* Botón de Enviar */
+        .btn-whatsapp {
+            width: 100%;
+            background-color: var(--whatsapp);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--whatsapp-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Floating WhatsApp Button */
+        .float-wa {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp);
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <h1>REMESA A 🇨🇺 CUBA</h1>
+        <p>Envía dinero de forma rápida, segura y al mejor cambio</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Entrega de Monedas -->
+        <div class="currency-banner">
+            <div class="currency-item">
+                <i class="fa-solid fa-earth-americas fa-2x" style="color: #0066ff;"></i>
+                <p>Moneda Internacional</p>
+                <h4>USD / EUR / MLC</h4>
+            </div>
+            <div class="currency-item">
+                <i class="fa-solid fa-money-bill-wave fa-2x" style="color: #28a745;"></i>
+                <p>Moneda Nacional</p>
+                <h4>CUP 🇨🇺</h4>
+            </div>
+        </div>
+
+        <!-- Formulario Principal -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa-solid fa-paper-plane"></i> Solicitud de Envío de Remesa
+            </div>
+            
+            <form id="remesaForm">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="remitente">Tu Nombre (Remitente)</label>
+                        <input type="text" id="remitente" class="form-control" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pago">Método de Pago / País</label>
+                        <select id="pago" class="form-control" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="Zelle 🇺🇸">Zelle 🇺🇸</option>
+                            <option value="Paypal 🇺🇸">PayPal 🇺🇸</option>
+                            <option value="CashApp 🇺🇸">CashApp 🇺🇸</option>
+                            <option value="Venmo 🇺🇸">Venmo 🇺🇸</option>
+                            <option value="Bizum 🇪🇸">Bizum 🇪🇸 / Europa</option>
+                            <option value="IBAN 🇪🇸">IBAN 🇪🇸</option>
+                            <option value="Postepay / Italia 🇮🇹">Postepay / Italia 🇮🇹</option>
+                            <option value="Canadá 🇨🇦">Canadá 🇨🇦</option>
+                            <option value="Uruguay 🇺🇾">Uruguay 🇺🇾</option>
+                            <option value="Guyana 🇬🇾">Guyana 🇬🇾</option>
+                            <option value="Argentina 🇦🇷">Argentina 🇦🇷</option>
+                            <option value="Bolivia 🇧🇴">Bolivia 🇧🇴</option>
+                            <option value="Chile 🇨🇱">Chile 🇨🇱</option>
+                            <option value="China 🇨🇳">China 🇨🇳</option>
+                            <option value="Colombia 🇨🇴">Colombia 🇨🇴</option>
+                            <option value="Perú (Dólar/Sol) 🇵🇪">Perú 🇵🇪</option>
+                            <option value="Dubai 🇦🇪">Dubai 🇦🇪</option>
+                            <option value="Ecuador 🇪🇨">Ecuador 🇪🇨</option>
+                            <option value="Panamá 🇵🇦">Panamá 🇵🇦</option>
+                            <option value="México 🇲🇽">Peso Mexicano 🇲🇽</option>
+                            <option value="Portugal 🇵🇹">Portugal 🇵🇹</option>
+                            <option value="Brasil (Reales) 🇧🇷">Brasil 🇧🇷</option>
+                            <option value="Rep. Dominicana 🇩🇴">República Dominicana 🇩🇴</option>
+                            <option value="Rusia (Rublos) 🇷🇺">Rusia 🇷🇺</option>
+                            <option value="Suriname 🇸🇷">Suriname 🇸🇷</option>
+                            <option value="Venezuela 🇻🇪">Venezuela 🇻🇪</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="monto">Monto a Enviar</label>
+                        <input type="text" id="monto" class="form-control" placeholder="Ej: 100 USD / EUR" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoMoneda">Moneda a Entregar en Cuba</label>
+                        <select id="tipoMoneda" class="form-control" required>
+                            <option value="Moneda Internacional (USD/EUR/MLC)">Internacional (USD / EUR / MLC)</option>
+                            <option value="Moneda Nacional (CUP)">Nacional (CUP)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr style="margin: 15px 0; border: none; border-top: 1px solid #eee;">
+                
+                <h4 style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem;">
+                    <i class="fa-solid fa-location-dot"></i> Datos del Destinatario en Cuba
+                </h4>
+
+                <div class="form-group">
+                    <label for="destinatario">Nombre Completo del Destinatario</label>
+                    <input type="text" id="destinatario" class="form-control" placeholder="Nombre de quien recibe en Cuba" required>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="provincia">Provincia en Cuba</label>
+                        <select id="provincia" class="form-control" required>
+                            <option value="" disabled selected>Selecciona Provincia</option>
+                            <option value="Pinar del Río">Pinar del Río</option>
+                            <option value="Artemisa">Artemisa</option>
+                            <option value="La Habana">La Habana</option>
+                            <option value="Mayabeque">Mayabeque</option>
+                            <option value="Matanzas">Matanzas</option>
+                            <option value="Cienfuegos">Cienfuegos</option>
+                            <option value="Villa Clara">Villa Clara</option>
+                            <option value="Sancti Spíritus">Sancti Spíritus</option>
+                            <option value="Ciego de Ávila">Ciego de Ávila</option>
+                            <option value="Camagüey">Camagüey</option>
+                            <option value="Las Tunas">Las Tunas</option>
+                            <option value="Holguín">Holguín</option>
+                            <option value="Granma">Granma</option>
+                            <option value="Santiago de Cuba">Santiago de Cuba</option>
+                            <option value="Guantánamo">Guantánamo</option>
+                            <option value="Isla de la Juventud">Isla de la Juventud</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="municipio">Municipio en Cuba</label>
+                        <input type="text" id="municipio" class="form-control" placeholder="Ej: Plaza de la Revolución" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="direccion">Dirección Exacta / Teléfono de Contacto</label>
+                    <textarea id="direccion" class="form-control" rows="2" placeholder="Calle, #, entre calles y teléfono de Cuba" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp fa-xl"></i> Enviar Remesa por WhatsApp
+                </button>
+            </form>
+        </div>
+
+        <!-- Métodos de Pago Aceptados -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa-solid fa-wallet"></i> Métodos de Pago Disponibles
+            </div>
+            <div class="methods-grid">
+                <div class="method-badge">🇺🇸 Zelle</div>
+                <div class="method-badge">🇪🇸 IBAN</div>
+                <div class="method-badge">🇮🇹 Italia / Postepay</div>
+                <div class="method-badge">🇨🇦 Canadá</div>
+                <div class="method-badge">🇪🇦 Bizum Europa</div>
+                <div class="method-badge">🇺🇾 Uruguay</div>
+                <div class="method-badge">🇬🇾 Guyana</div>
+                <div class="method-badge">🇺🇸 PayPal</div>
+                <div class="method-badge">🇺🇸 CashApp</div>
+                <div class="method-badge">🇦🇷 Argentina</div>
+                <div class="method-badge">🇧🇴 Bolivia</div>
+                <div class="method-badge">🇨🇱 Chile</div>
+                <div class="method-badge">🇨🇳 China</div>
+                <div class="method-badge">🇨🇴 Colombia</div>
+                <div class="method-badge">🇵🇪 Perú (Dólar/Sol)</div>
+                <div class="method-badge">🇦🇪 Dubai</div>
+                <div class="method-badge">🇪🇨 Ecuador</div>
+                <div class="method-badge">🇵🇦 Panamá</div>
+                <div class="method-badge">🇲🇽 Peso Mexicano</div>
+                <div class="method-badge">🇵🇹 Portugal</div>
+                <div class="method-badge">🇧🇷 Reales Brasil</div>
+                <div class="method-badge">🇩🇴 Rep. Dominicana</div>
+                <div class="method-badge">🇷🇺 Rublo Rusia</div>
+                <div class="method-badge">🇸🇷 Suriname</div>
+                <div class="method-badge">🇺🇸 Venmo</div>
+                <div class="method-badge">🇻🇪 Venezuela</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botón Flotante Directo a WhatsApp -->
+    <a href="https://wa.me/5351148453" class="float-wa" target="_blank" title="Contactar por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript para enviar los datos a WhatsApp -->
+    <script>
+        document.getElementById('remesaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Número de WhatsApp receptor
+            const telefonoWhatsApp = "5351148453";
+
+            // Datos del formulario
+            const remitente = document.getElementById('remitente').value;
+            const pago = document.getElementById('pago').value;
+            const monto = document.getElementById('monto').value;
+            const tipoMoneda = document.getElementById('tipoMoneda').value;
+            const destinatario = document.getElementById('destinatario').value;
+            const provincia = document.getElementById('provincia').value;
+            const municipio = document.getElementById('municipio').value;
+            const direccion = document.getElementById('direccion').value;
+
+            // Formatear el mensaje para WhatsApp
+            const mensaje = `¡Hola! Quiero realizar una remesa a Cuba 🇨🇺%0A%0A` +
+                `📌 *DATOS DE LA REMESA:*%0A` +
+                `• *Remitente:* ${encodeURIComponent(remitente)}%0A` +
+                `• *Método de Pago:* ${encodeURIComponent(pago)}%0A` +
+                `• *Monto a Enviar:* ${encodeURIComponent(monto)}%0A` +
+                `• *Moneda a Entregar:* ${encodeURIComponent(tipoMoneda)}%0A%0A` +
+                `📍 *DATOS DEL DESTINATARIO (CUBA):*%0A` +
+                `• *Nombre Completo:* ${encodeURIComponent(destinatario)}%0A` +
+                `• *Provincia:* ${encodeURIComponent(provincia)}%0A` +
+                `• *Municipio:* ${encodeURIComponent(municipio)}%0A` +
+                `• *Dirección / Teléfono:* ${encodeURIComponent(direccion)}`;
+
+            // Enlace final de WhatsApp
+            const urlWhatsApp = `https://wa.me/${telefonoWhatsApp}?text=${mensaje}`;
+
+            // Abrir en WhatsApp
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+</body>
+</html>
+                                        
